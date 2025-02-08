@@ -16,6 +16,9 @@ app.Add("", Root);
 app.Add("init", Init);
 app.Run(args);
 
+/// <summary>
+/// コンフィグを読み込んでデスクトップ毎に環境変数を設定します
+/// </summary>
 async Task<int> Root()
 {
     var bat = new StringBuilder();
