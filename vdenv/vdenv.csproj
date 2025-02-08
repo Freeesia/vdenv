@@ -7,6 +7,8 @@
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>vdenv</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
