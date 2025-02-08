@@ -14,10 +14,15 @@ app.Add("init", Init);
 app.Add("sum", (int x, int y) => Console.WriteLine(x + y));
 app.Run(args);
 
-async Task Init()
+/// <summary>
+/// コンフィグ初期化
+/// </summary>
+/// <param name="reset">既存の設定をリセットする</param>
+/// <param name="prune">存在しないデスクトップ設定を削除する</param>
+async Task Init(bool reset = false, bool prune = false)
 {
     IReadOnlyDictionary<Guid, DesktopConfig>? oldDesktops = null;
-    if (File.Exists(configPath))
+    if (File.Exists(configPath) && !reset)
     {
         var buf = await File.ReadAllBytesAsync(configPath);
         oldDesktops = YamlSerializer.Deserialize<RootConfig>(buf).Desktops;
@@ -36,7 +41,7 @@ async Task Init()
             newDesktops.Add(desktop.Id, new DesktopConfig(true, [], "", ""));
         }
     }
-    if (oldDesktops is not null)
+    if (!prune && oldDesktops is not null)
     {
         foreach (var (id, desktop) in oldDesktops)
         {
