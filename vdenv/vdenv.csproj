@@ -14,6 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="dotenv.net" Version="3.2.1" />
     <PackageReference Include="VYaml" Version="0.28.1" />
   </ItemGroup>
 

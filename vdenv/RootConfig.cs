@@ -1,7 +1,7 @@
 using VYaml.Annotations;
 
 [YamlObject]
-partial record RootConfig(IReadOnlyDictionary<Guid, DesktopConfig> Desktops);
+partial record RootConfig(IReadOnlyDictionary<Guid, DesktopConfig>? Desktops);
 
 [YamlObject]
-partial record DesktopConfig(bool Exists, IReadOnlyList<string> Env, string EnvPath, string ProfilePath);
+partial record DesktopConfig(bool Exists, IReadOnlyDictionary<string, string?> Env, string EnvPath, string ProfilePath, string StartDir);

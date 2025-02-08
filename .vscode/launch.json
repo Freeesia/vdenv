@@ -2,6 +2,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "root",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/vdenv/bin/Debug/vdenv.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/vdenv",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "init",
             "type": "coreclr",
             "request": "launch",
