@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using ConsoleAppFramework;
 using dotenv.net;
@@ -14,7 +15,8 @@ string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFo
 var app = ConsoleApp.Create();
 app.Add("", Root);
 app.Add("init", Init);
-app.Add("info", Info);
+app.Add("config", PrintConfig);
+app.Add("config open", () => Process.Start(new ProcessStartInfo { FileName = configPath, UseShellExecute = true }));
 app.Run(args);
 
 /// <summary>
@@ -129,7 +131,7 @@ async Task Init(bool reset = false, bool prune = false)
 /// 現在のデスクトップの設定を表示
 /// </summary>
 /// <param name="all">全ての設定を表示</param>
-async Task Info(bool all = false)
+async Task PrintConfig(bool all = false)
 {
     if (!File.Exists(configPath))
     {
