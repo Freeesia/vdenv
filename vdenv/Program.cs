@@ -37,6 +37,8 @@ async Task<int> Root()
 {
     var bat = new StringBuilder();
     bat.AppendLine("@echo off");
+    var batName = Path.GetRandomFileName();
+    static string GetBatPath(string name) => Path.Combine(Path.GetTempPath(), "vdenv", name + ".bat");
     try
     {
         if (!File.Exists(configPath))
@@ -53,6 +55,14 @@ async Task<int> Root()
             bat.AppendLine($"echo `{current.Name}({current.Id})` not found in config.");
             return 1;
         }
+
+        batName = desktop.GetHash();
+        if (Path.Exists(GetBatPath(batName)))
+        {
+            return 0;
+        }
+
+        Debug.WriteLine($"create: {batName}");
 
         foreach (var (key, value) in desktop.Env)
         {
@@ -94,10 +104,12 @@ async Task<int> Root()
     }
     finally
     {
-        bat.AppendLine("del \"%~f0\"");
-        var tempPath = Path.Combine(Path.GetTempPath(), "vdenv", Path.GetRandomFileName() + ".bat");
-        Directory.CreateDirectory(Path.GetDirectoryName(tempPath)!);
-        await File.WriteAllTextAsync(tempPath, bat.ToString());
+        var tempPath = GetBatPath(batName);
+        if (!Path.Exists(tempPath))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(tempPath)!);
+            await File.WriteAllTextAsync(tempPath, bat.ToString());
+        }
         Console.Write(tempPath);
     }
 }
