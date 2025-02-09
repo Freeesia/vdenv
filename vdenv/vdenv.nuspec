@@ -1,17 +1,14 @@
 <package>
   <metadata>
     <id>vdenv</id>
-    <version>1.0.0</version>
-    <authors>Your Name</authors>
-    <owners>Your Company</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>vdenv dotnetツールの説明</description>
+    <version>0.0.0-placeholder</version>
+    <authors>$authors$</authors>
+    <description>$Description$</description>
+    <repository type="$RepositoryType$" url="$RepositoryUrl$" />
+    <projectUrl>$PackageProjectUrl$</projectUrl>
+    <tags>$PackageTags$</tags>
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
   </metadata>
-  <files>
-    <!-- ビルド成果物が含まれるディレクトリに応じて修正してください -->
-    <file src="bin\Release\net8.0\win10-x64\publish\**" target="tools\net8.0" />
-  </files>
 </package>
