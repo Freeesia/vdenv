@@ -1,5 +1,10 @@
 # vdenv
 
+[![.NET Core Package](https://github.com/Freeesia/vdenv/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Freeesia/vdenv/actions/workflows/dotnet.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/Freeesia/vdenv)](https://github.com/Freeesia/vdenv/releases/latest)
+[![NuGet Version](https://img.shields.io/nuget/v/vdenv)](https://www.nuget.org/packages/vdenv)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/vdenv)](https://www.nuget.org/packages/vdenv)
+
 vdenvは仮想デスクトップごとに環境変数およびプロファイルを切り替えるためのdotnetツールです。
 
 ## インストール
