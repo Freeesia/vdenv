@@ -38,7 +38,7 @@ vdenvはユーザープロファイル直下の `vdenv.yaml` を参照します�
 設定例:
 ```yaml
 desktops:
-  90e9c8af-e2e9-44e5-8289-7f8d8fb55e21:
+  90e9c8af-e2e9-44e5-8289-7f8d8fb55e21: #　仮想デスクトップの内部管理ID
     exists: true       # デスクトップが存在するかのフラグ (true/false)
     env: {}            # 環境変数のキーと値のペア。例: { "PATH": "C:\\path", "VAR": "value" }
     envPath: ""        # 環境変数を定義した.envファイルへのパス。空の場合は無視されます。
