@@ -74,6 +74,8 @@ async Task<int> Root()
             }
         }
 
+        bat.AppendLine($"title {current.Name}");
+
         if (!string.IsNullOrEmpty(desktop.ProfilePath))
         {
             bat.AppendLine($"call \"{desktop.ProfilePath}\"");
