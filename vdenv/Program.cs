@@ -10,7 +10,14 @@ using WindowsDesktop;
 Thread.CurrentThread.SetApartmentState(ApartmentState.Unknown);
 Thread.CurrentThread.SetApartmentState(ApartmentState.STA);
 
-VirtualDesktop.Configure();
+VirtualDesktop.Configure(new()
+{
+    CompiledAssemblySaveDirectory = new(Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        "StudioFreesia",
+        "vdenv",
+        "assemblies")),
+});
 string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "vdenv.yaml");
 var app = ConsoleApp.Create();
 app.Add("", Root);
