@@ -31,6 +31,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v3.1.11
       - run: |
           dotnet pack vdenv -c Release -o pack \
+            -p:EnableWindowsTargeting=true \
             -p:Version=${{ steps.gitversion.outputs.fullSemVer }} \
             -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
             -p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }} \
