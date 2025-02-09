@@ -17,7 +17,7 @@
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <PackageTags>VirtualDesktop</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>
