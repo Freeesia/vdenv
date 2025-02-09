@@ -15,7 +15,11 @@ VirtualDesktop.Configure(new()
     CompiledAssemblySaveDirectory = new(Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "StudioFreesia",
+#if DEBUG
+        "vdenv-debug",
+#else
         "vdenv",
+#endif
         "assemblies")),
 });
 string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "vdenv.yaml");
