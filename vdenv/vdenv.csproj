@@ -7,6 +7,9 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git@github.com:Freeesia/vdenv.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Freeesia/vdenv</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>VirtualDesktop</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -17,7 +20,6 @@
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <PackageTags>VirtualDesktop</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -33,6 +35,8 @@
     <NuspecProperties>$(NuspecProperties);PackageTags=$(PackageTags)</NuspecProperties>
     <NuspecProperties>$(NuspecProperties);RepositoryType=$(RepositoryType)</NuspecProperties>
     <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageLicenseExpression=$(PackageLicenseExpression)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageReadmeFile=$(PackageReadmeFile)</NuspecProperties>
   </PropertyGroup>
 
   <ItemGroup>

@@ -10,10 +10,13 @@
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
+    <license type="expression">$PackageLicenseExpression$</license>
+    <readme>$PackageReadmeFile$</readme>
   </metadata>
 
   <files>
     <file src="DotnetToolSettings.xml" target="tools\net8.0\any\" />
     <file src="bin\$configuration$\**\*" target="tools\net8.0\any\" />
+    <file src="..\README.md" target="\" />
   </files>
 </package>
