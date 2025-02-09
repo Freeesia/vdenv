@@ -20,6 +20,22 @@ dotnet tool install -g vdenv
 cmd.exe /k for /f "delims=" %f in ('vdenv') do @call "%f"
 ```
 
+> [!TIP]
+> Windows Terminalの場合、`settings.json` に以下のように設定することで、起動時にvdenvを実行できます:
+> ```json
+> {
+>   "profiles": {
+>     "list": [
+>       {
+>         "commandline": "%SystemRoot%\\System32\\cmd.exe /k for /f \"delims=\" %f in ('vdenv') do @call \"%f\""
+>       }
+>     ]
+>   }
+> }
+> ```
+> UIで設定する場合は以下のように設定します:
+> ![設定UI](docs/wt.png)
+
 その他の基本的なコマンド:
 
 - `vdenv init`  
