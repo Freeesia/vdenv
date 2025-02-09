@@ -36,7 +36,11 @@ app.Run(args);
 async Task<int> Root()
 {
     var bat = new StringBuilder();
-    bat.AppendLine("@echo off");
+    bat.AppendLine("""
+    @echo off
+    for /f "tokens=2 delims=:" %%c in ('chcp') do set VDENV_ORIGINAL_CP=%%c
+    chcp 65001 > NUL
+    """);
     var batName = Path.GetRandomFileName();
     static string GetBatPath(string name) => Path.Combine(Path.GetTempPath(), "vdenv", name + ".bat");
     try
@@ -107,6 +111,7 @@ async Task<int> Root()
         var tempPath = GetBatPath(batName);
         if (!Path.Exists(tempPath))
         {
+            bat.AppendLine("chcp %VDENV_ORIGINAL_CP% > NUL");
             Directory.CreateDirectory(Path.GetDirectoryName(tempPath)!);
             await File.WriteAllTextAsync(tempPath, bat.ToString());
         }
