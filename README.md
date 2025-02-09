@@ -12,7 +12,7 @@ dotnet tool install -g vdenv
 
 ターミナル起動時に以下のように引数を渡します:
 ```cmd
-cmd.exe /k for /f "delims=" %%F in ('vdenv') do @call "%%F"
+cmd.exe /k for /f "delims=" %f in ('vdenv') do @call "%f"
 ```
 
 その他の基本的なコマンド:
