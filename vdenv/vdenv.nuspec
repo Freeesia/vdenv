@@ -11,4 +11,9 @@
       <packageType name="DotnetTool" />
     </packageTypes>
   </metadata>
+
+  <files>
+    <file src="DotnetToolSettings.xml" target="tools\net8.0\any\" />
+    <file src="bin\$configuration$\**\*" target="tools\net8.0\any\" />
+  </files>
 </package>

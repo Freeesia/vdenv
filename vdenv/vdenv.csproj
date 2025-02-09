@@ -21,6 +21,7 @@
 
   <PropertyGroup>
     <NuspecFile>vdenv.nuspec</NuspecFile>
+    <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
     <NuspecProperties>$(NuspecProperties);authors=$(Authors)</NuspecProperties>
     <NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
     <NuspecProperties>$(NuspecProperties);id=$(PackageId)</NuspecProperties>
