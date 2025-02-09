@@ -16,7 +16,7 @@ var app = ConsoleApp.Create();
 app.Add("", Root);
 app.Add("init", Init);
 app.Add("config", PrintConfig);
-app.Add("config open", () => Process.Start(new ProcessStartInfo { FileName = configPath, UseShellExecute = true }));
+app.Add("config open", OpenConfig);
 app.Run(args);
 
 /// <summary>
@@ -163,3 +163,8 @@ async Task PrintConfig(bool all = false)
         Console.ResetColor();
     }
 }
+
+/// <summary>
+/// コンフィグファイルを開く
+/// </summary>
+void OpenConfig() => Process.Start(new ProcessStartInfo { FileName = configPath, UseShellExecute = true });
