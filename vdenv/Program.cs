@@ -81,7 +81,9 @@ async Task<int> Root()
     }
     finally
     {
-        var tempPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".bat");
+        bat.AppendLine("del \"%~f0\"");
+        var tempPath = Path.Combine(Path.GetTempPath(), "vdenv", Path.GetRandomFileName() + ".bat");
+        Directory.CreateDirectory(Path.GetDirectoryName(tempPath)!);
         await File.WriteAllTextAsync(tempPath, bat.ToString());
         Console.Write(tempPath);
     }
