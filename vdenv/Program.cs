@@ -57,11 +57,6 @@ async Task<int> Root(ConsoleAppContext context)
         {
             UseShellExecute = false,
         };
-        psi.ArgumentList.Add("/c");
-        foreach (var arg in commandArgs)
-        {
-            psi.ArgumentList.Add(arg);
-        }
         foreach (var (key, value) in desktop.Env)
         {
             psi.Environment[key] = value;
@@ -82,6 +77,26 @@ async Task<int> Root(ConsoleAppContext context)
             {
                 Console.Error.WriteLine(e.Message);
                 return 1;
+            }
+        }
+        psi.ArgumentList.Add("/c");
+        if (!string.IsNullOrEmpty(desktop.ProfilePath))
+        {
+            if (!File.Exists(desktop.ProfilePath))
+            {
+                Console.Error.WriteLine($"Profile file not found: {desktop.ProfilePath}");
+                return 1;
+            }
+            // call is a cmd.exe internal command, so we must build a compound command string
+            var cmdParts = new List<string> { $"call \"{desktop.ProfilePath}\"", "&&" };
+            cmdParts.AddRange(commandArgs.Select(a => a.Contains(' ') ? $"\"{a}\"" : a));
+            psi.ArgumentList.Add(string.Join(" ", cmdParts));
+        }
+        else
+        {
+            foreach (var arg in commandArgs)
+            {
+                psi.ArgumentList.Add(arg);
             }
         }
         using var proc = Process.Start(psi);
