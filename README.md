@@ -36,6 +36,12 @@ cmd.exe /k for /f "delims=" %f in ('vdenv') do @call "%f"
 > UIで設定する場合は以下のように設定します:
 > ![設定UI](docs/wt.png)
 
+特定のコマンドにだけ現在のデスクトップの環境変数を適用したい場合は、`--` に続けてコマンドを指定します:
+```cmd
+vdenv -- echo %hoge%
+```
+`--` 以降の引数が現在の仮想デスクトップの設定 (`env`/`envPath`/`profilePath`/`startDir`) を適用した状態でサブプロセスとして実行されます。終了コードはそのままvdenvの終了コードとして返されます。
+
 その他の基本的なコマンド:
 
 - `vdenv init`  
