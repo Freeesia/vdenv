@@ -30,7 +30,7 @@ jobs:
       - id: gitversion
         uses: gittools/actions/gitversion/execute@v4.4.0
       - run: |
-          dotnet pack vdenv -c Release -o pack \
+          dotnet pack vdenv.sln -c Release -o pack \
             -p:EnableWindowsTargeting=true \
             -p:Version=${{ steps.gitversion.outputs.fullSemVer }} \
             -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \

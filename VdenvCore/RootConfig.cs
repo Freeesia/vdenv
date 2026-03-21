@@ -3,17 +3,16 @@ using System.Security.Cryptography;
 using System.Text;
 using VYaml.Annotations;
 using VYaml.Serialization;
-using WindowsDesktop;
 
 [YamlObject]
-partial record RootConfig(IReadOnlyDictionary<Guid, DesktopConfig>? Desktops);
+public partial record RootConfig(IReadOnlyDictionary<Guid, DesktopConfig>? Desktops);
 
 [YamlObject]
-partial record DesktopConfig(bool Exists, IReadOnlyDictionary<string, string?> Env, string EnvPath, string ProfilePath, string StartDir)
+public partial record DesktopConfig(bool Exists, IReadOnlyDictionary<string, string?> Env, string EnvPath, string ProfilePath, string StartDir)
 {
-    public string GetHash(VirtualDesktop desktop)
+    public string GetHash(Guid id, string name)
     {
-        var buf = YamlSerializer.Serialize(new HashData(desktop.Id, desktop.Name, this));
+        var buf = YamlSerializer.Serialize(new HashData(id, name, this));
 #if DEBUG
         Debug.WriteLine(Encoding.UTF8.GetString(buf.Span));
 #endif
@@ -25,4 +24,4 @@ partial record DesktopConfig(bool Exists, IReadOnlyDictionary<string, string?> E
 }
 
 [YamlObject]
-partial record HashData(Guid Id, string Name, DesktopConfig Config);
+internal partial record HashData(Guid Id, string Name, DesktopConfig Config);
