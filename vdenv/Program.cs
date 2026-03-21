@@ -38,7 +38,7 @@ app.Run(args);
 async Task<int> Root([Argument] Guid? desktopId = null, ConsoleAppContext context = default!)
 {
     static VirtualDesktop? ResolveDesktop(Guid? id) => id.HasValue
-        ? VirtualDesktop.GetDesktops().FirstOrDefault(d => d.Id == id.Value)
+        ? VirtualDesktop.FromId(id.Value)
         : VirtualDesktop.Current;
 
     var commandArgs = context.EscapedArguments.ToArray();
