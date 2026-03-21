@@ -59,6 +59,5 @@ Lib/VirtualDesktop/  # Gitサブモジュール: Windows Virtual Desktop COM API
 - **YAMLシリアライズ**には `VYaml` を使用します。`YamlSerializer.Serialize` / `YamlSerializer.Deserialize<T>` / `YamlSerializer.SerializeToString` を使います。
 - **設定ファイル**: `~/vdenv.yaml`（`Environment.SpecialFolder.UserProfile` 直下）。`Guid`（仮想デスクトップの内部ID）をキーとする辞書構造。
 - **ConsoleAppFramework v5**: `app.Add("コマンド名", メソッドデリゲート)` でコマンドを登録。メソッドやパラメータのXMLドキュメントコメントがヘルプテキストになります。
-- **ターゲットフレームワーク**: `net8.0-windows10.0.19041.0`（Windows専用）。Linux/macOSでビルドする場合は `-p:EnableWindowsTargeting=true` が必要です。
 - **バージョン管理**: GitVersion（`GitVersion.yml`）で管理。`MajorMinorPatchTag` スキーム、`v*` タグプレフィックス。パック時は `-p:Version=...` で指定。
 - **NuGetパッケージ**: 自動生成ではなくカスタムの `vdenv.nuspec` を使用。パッケージタイプは `DotnetTool`。

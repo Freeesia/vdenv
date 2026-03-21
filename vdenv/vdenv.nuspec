@@ -15,8 +15,8 @@
   </metadata>
 
   <files>
-    <file src="DotnetToolSettings.xml" target="tools\net8.0\any\" />
-    <file src="bin\$configuration$\**\*" target="tools\net8.0\any\" />
+    <file src="DotnetToolSettings.xml" target="tools\net10.0\any\" />
+    <file src="bin\$configuration$\**\*" target="tools\net10.0\any\" />
     <file src="..\README.md" target="\" />
   </files>
 </package>
