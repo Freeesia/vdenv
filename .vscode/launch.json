@@ -28,6 +28,22 @@
             "stopAtEntry": false
         },
         {
+            "name": "--(id)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/vdenv/bin/Debug/vdenv.dll",
+            "args": [
+                "90e9c8af-e2e9-44e5-8289-7f8d8fb55e21",
+                "--",
+                "echo",
+                "%HOGE%"
+            ],
+            "cwd": "${workspaceFolder}/vdenv",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "init",
             "type": "coreclr",
             "request": "launch",

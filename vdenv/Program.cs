@@ -34,8 +34,13 @@ app.Run(args);
 /// <summary>
 /// コンフィグを読み込んでデスクトップ毎に環境変数を設定します
 /// </summary>
-async Task<int> Root(ConsoleAppContext context)
+/// <param name="desktopId">処理対象のデスクトップID (省略時は現在のデスクトップ)</param>
+async Task<int> Root([Argument] Guid? desktopId = null, ConsoleAppContext context = default!)
 {
+    static VirtualDesktop? ResolveDesktop(Guid? id) => id.HasValue
+        ? VirtualDesktop.FromId(id.Value)
+        : VirtualDesktop.Current;
+
     var commandArgs = context.EscapedArguments.ToArray();
     if (commandArgs is { Length: > 0 })
     {
@@ -46,7 +51,12 @@ async Task<int> Root(ConsoleAppContext context)
         }
         var buf = await File.ReadAllBytesAsync(configPath);
         var config = YamlSerializer.Deserialize<RootConfig>(buf);
-        var current = VirtualDesktop.Current;
+        var current = ResolveDesktop(desktopId);
+        if (current is null)
+        {
+            Console.Error.WriteLine($"Desktop `{desktopId}` not found.");
+            return 1;
+        }
         if (!(config.Desktops?.TryGetValue(current.Id, out var desktop) ?? false))
         {
             Console.Error.WriteLine($"`{current.Name}({current.Id})` not found in config.");
@@ -128,7 +138,12 @@ async Task<int> Root(ConsoleAppContext context)
         var buf = await File.ReadAllBytesAsync(configPath);
         var config = YamlSerializer.Deserialize<RootConfig>(buf);
 
-        var current = VirtualDesktop.Current;
+        var current = ResolveDesktop(desktopId);
+        if (current is null)
+        {
+            bat.AppendLine($"echo Desktop `{desktopId}` not found.");
+            return 1;
+        }
         if (!(config.Desktops?.TryGetValue(current.Id, out var desktop) ?? false))
         {
             bat.AppendLine($"echo `{current.Name}({current.Id})` not found in config.");
