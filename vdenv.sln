@@ -4,8 +4,6 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vdenv", "vdenv\vdenv.csproj", "{6C88879F-F920-536F-7F3D-241C6B86EE70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualDesktop", "Lib\VirtualDesktop\src\VirtualDesktop\VirtualDesktop.csproj", "{ABB7A3E7-8FA5-4D79-B8E4-928E20E68BE3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,10 +14,6 @@ Global
 		{6C88879F-F920-536F-7F3D-241C6B86EE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C88879F-F920-536F-7F3D-241C6B86EE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C88879F-F920-536F-7F3D-241C6B86EE70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABB7A3E7-8FA5-4D79-B8E4-928E20E68BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABB7A3E7-8FA5-4D79-B8E4-928E20E68BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABB7A3E7-8FA5-4D79-B8E4-928E20E68BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABB7A3E7-8FA5-4D79-B8E4-928E20E68BE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,11 +45,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="dotenv.net" Version="3.2.1" />
+    <PackageReference Include="Slions.VirtualDesktop" Version="6.9.2" />
     <PackageReference Include="VYaml" Version="0.28.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Lib\VirtualDesktop\src\VirtualDesktop\VirtualDesktop.csproj" />
   </ItemGroup>
 
 </Project>
