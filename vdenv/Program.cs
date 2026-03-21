@@ -60,7 +60,7 @@ async Task<int> Root()
             return 1;
         }
 
-        batName = desktop.GetHash(current);
+        batName = desktop.GetHash(current.Id, current.Name);
         if (Path.Exists(GetBatPath(batName)))
         {
             return 0;

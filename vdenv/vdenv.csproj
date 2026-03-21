@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lib\VirtualDesktop\src\VirtualDesktop\VirtualDesktop.csproj" />
+    <ProjectReference Include="..\VdenvCore\VdenvCore.csproj" />
   </ItemGroup>
 
 </Project>
