@@ -26,6 +26,19 @@
             "stopAtEntry": false
         },
         {
+            "name": "config",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/vdenv/bin/Debug/vdenv.dll",
+            "args": [
+                "config"
+            ],
+            "cwd": "${workspaceFolder}/vdenv",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <PackageId>vdenv.Core</PackageId>
     <Description>vdenvの設定モデルライブラリです</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

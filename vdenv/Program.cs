@@ -184,7 +184,7 @@ async Task PrintConfig(bool all = false)
     var current = VirtualDesktop.Current;
     if (config.Desktops?.TryGetValue(current.Id, out var desktop) ?? false)
     {
-        Console.WriteLine(current.Name);
+        Console.WriteLine($"{current.Name}({current.Id})");
         Console.WriteLine("---");
         Console.WriteLine(YamlSerializer.SerializeToString(desktop));
     }
