@@ -23,6 +23,7 @@ VirtualDesktop.Configure(new()
         "assemblies")),
 });
 string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "vdenv.yaml");
+
 var app = ConsoleApp.Create();
 app.Add("", Root);
 app.Add("init", Init);
@@ -33,8 +34,82 @@ app.Run(args);
 /// <summary>
 /// コンフィグを読み込んでデスクトップ毎に環境変数を設定します
 /// </summary>
-async Task<int> Root()
+async Task<int> Root(ConsoleAppContext context)
 {
+    var commandArgs = context.EscapedArguments.ToArray();
+    if (commandArgs is { Length: > 0 })
+    {
+        if (!File.Exists(configPath))
+        {
+            Console.Error.WriteLine("Config file not found. Run `vdenv init`.");
+            return 1;
+        }
+        var buf = await File.ReadAllBytesAsync(configPath);
+        var config = YamlSerializer.Deserialize<RootConfig>(buf);
+        var current = VirtualDesktop.Current;
+        if (!(config.Desktops?.TryGetValue(current.Id, out var desktop) ?? false))
+        {
+            Console.Error.WriteLine($"`{current.Name}({current.Id})` not found in config.");
+            return 1;
+        }
+
+        var psi = new ProcessStartInfo("cmd.exe")
+        {
+            UseShellExecute = false,
+            WorkingDirectory = desktop.StartDir ?? string.Empty,
+        };
+        foreach (var (key, value) in desktop.Env)
+        {
+            psi.Environment[key] = value;
+        }
+        if (!string.IsNullOrEmpty(desktop.EnvPath))
+        {
+            try
+            {
+                var envVars = DotEnv.Fluent()
+                    .WithEnvFiles(desktop.EnvPath)
+                    .Read();
+                foreach (var (key, value) in envVars)
+                {
+                    psi.Environment[key] = value;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.Message);
+                return 1;
+            }
+        }
+        psi.ArgumentList.Add("/c");
+        if (!string.IsNullOrEmpty(desktop.ProfilePath))
+        {
+            if (!File.Exists(desktop.ProfilePath))
+            {
+                Console.Error.WriteLine($"Profile file not found: {desktop.ProfilePath}");
+                return 1;
+            }
+            // call is a cmd.exe internal command, so we must build a compound command string
+            var cmdParts = new List<string> { $"call \"{desktop.ProfilePath}\"", "&&" };
+            cmdParts.AddRange(commandArgs.Select(a => a.Contains(' ') ? $"\"{a}\"" : a));
+            psi.ArgumentList.Add(string.Join(" ", cmdParts));
+        }
+        else
+        {
+            foreach (var arg in commandArgs)
+            {
+                psi.ArgumentList.Add(arg);
+            }
+        }
+        using var proc = Process.Start(psi);
+        if (proc is null)
+        {
+            Console.Error.WriteLine("Failed to start process.");
+            return 1;
+        }
+        await proc.WaitForExitAsync();
+        return proc.ExitCode;
+    }
+
     var bat = new StringBuilder();
     bat.AppendLine("""
     @echo off
