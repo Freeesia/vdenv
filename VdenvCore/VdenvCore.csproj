@@ -2,18 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Version Condition="'$(Version)' == ''">0.0.0-local</Version>
     <PackageId>vdenv.Core</PackageId>
     <Description>vdenvの設定モデルライブラリです</Description>
-    <Authors>Freeesia</Authors>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git@github.com:Freeesia/vdenv.git</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/Freeesia/vdenv</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>VirtualDesktop</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
