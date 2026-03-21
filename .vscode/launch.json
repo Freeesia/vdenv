@@ -13,6 +13,21 @@
             "stopAtEntry": false
         },
         {
+            "name": "--",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/vdenv/bin/Debug/vdenv.dll",
+            "args": [
+                "--",
+                "echo",
+                "%HOGE%"
+            ],
+            "cwd": "${workspaceFolder}/vdenv",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
             "name": "init",
             "type": "coreclr",
             "request": "launch",
@@ -33,6 +48,20 @@
             "program": "${workspaceFolder}/vdenv/bin/Debug/vdenv.dll",
             "args": [
                 "config"
+            ],
+            "cwd": "${workspaceFolder}/vdenv",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "config open",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/vdenv/bin/Debug/vdenv.dll",
+            "args": [
+                "config",
+                "open"
             ],
             "cwd": "${workspaceFolder}/vdenv",
             "console": "internalConsole",
