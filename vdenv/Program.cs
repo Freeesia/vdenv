@@ -24,16 +24,8 @@ VirtualDesktop.Configure(new()
 });
 string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "vdenv.yaml");
 
-var separatorIndex = Array.IndexOf(args, "--");
-string[] commandArgs = [];
-if (separatorIndex >= 0)
-{
-    commandArgs = args[(separatorIndex + 1)..];
-    args = args[..separatorIndex];
-}
-
 var app = ConsoleApp.Create();
-app.Add("", () => Root(commandArgs));
+app.Add("", Root);
 app.Add("init", Init);
 app.Add("config", PrintConfig);
 app.Add("config open", OpenConfig);
@@ -42,9 +34,10 @@ app.Run(args);
 /// <summary>
 /// コンフィグを読み込んでデスクトップ毎に環境変数を設定します
 /// </summary>
-async Task<int> Root(string[] commandArgs)
+async Task<int> Root(ConsoleAppContext context)
 {
-    if (commandArgs.Length > 0)
+    var commandArgs = context.EscapedArguments.ToArray();
+    if (commandArgs is { Length: > 0 })
     {
         if (!File.Exists(configPath))
         {
