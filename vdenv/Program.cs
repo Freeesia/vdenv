@@ -56,6 +56,7 @@ async Task<int> Root(ConsoleAppContext context)
         var psi = new ProcessStartInfo("cmd.exe")
         {
             UseShellExecute = false,
+            WorkingDirectory = desktop.StartDir ?? string.Empty,
         };
         foreach (var (key, value) in desktop.Env)
         {
