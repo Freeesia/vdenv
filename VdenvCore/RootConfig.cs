@@ -24,4 +24,4 @@ public partial record DesktopConfig(bool Exists, IReadOnlyDictionary<string, str
 }
 
 [YamlObject]
-public partial record HashData(Guid Id, string Name, DesktopConfig Config);
+internal partial record HashData(Guid Id, string Name, DesktopConfig Config);
