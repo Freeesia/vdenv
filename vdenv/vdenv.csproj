@@ -35,7 +35,7 @@
     </PackageReference>
     <PackageReference Include="dotenv.net" Version="4.2.0" />
     <PackageReference Include="Slions.VirtualDesktop" Version="6.9.2" />
-    <PackageReference Include="VYaml" Version="0.28.1" />
+    <PackageReference Include="VYaml" Version="1.6.1" />
   </ItemGroup>
 
   <ItemGroup>
